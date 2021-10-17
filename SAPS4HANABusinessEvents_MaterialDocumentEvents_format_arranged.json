@@ -1,0 +1,80 @@
+{"openapi":"3.0.0","info":{
+  "title":"Material Document",
+  "version":"1.0",
+  "description":"A material document is a collection of goods movements which are physical or logical movements of materials leading to a change in inventory or resulting in the consumption of the materials. The following event is raised for material document: \n - Material document created"},
+  "externalDocs":{
+    "description":"Business Documentation",
+    "url":"https://help.sap.com/viewer/eb2a39dd0c124fed8252f684002d55e1/2021.000/en-US/40783449115e4b53a9da6e513caf8f50.html"},
+    "components":{
+      "schemas":{
+        "sap.s4.beh.materialdocument.v1.MaterialDocument.Created.v1":{
+          "type":"object","properties":{
+            "AccountingDocumentType":{"type":"string"},
+            "InventoryTransactionType":{"type":"string"},
+            "MaterialDocument":{"type":"string"},
+            "MaterialDocumentYear":{"type":"string"},
+            "TransactionCode":{"type":"string"}
+            }
+            },
+      "CloudContext":{
+        "title":"Schema for the CloudEvents context fields.",
+        "description":"This is a schema specification for the context fields as per CloudEvent standards.",
+        "type":"object",
+        "properties":{
+          "specversion":{
+            "description":"The version of the CloudEvents specification which the event uses. This enables the interpretation of the context.","type":"string"},
+            "type":{
+              "description":"Type of occurrence which has happened. Often this property is used for routing, observability, policy enforcement, etc.","type":"string","minLength":1},
+              "source":{
+                "description":"This describes the event producer.",
+                "type":"string",
+                "format":"uri-reference"},
+                "subject":{
+                  "description":"The subject of the event in the context of the event producer (identified by source).",
+                  "type":"string",
+                  "minLength":1},
+                  "id":{
+                    "description":"ID of the event.","type":"string","minLength":1},
+                    "time":{
+                      "description":"Timestamp of when the occurrence happened. Must adhere to RFC 3339.",
+                      "type":"string",
+                      "format":"date-time"},
+                      "datacontenttype":{
+                        "description":"Describe the data encoding format","type":"string"}
+                        },
+          "required":["id","specversion","source","type"]
+          }
+        }
+      },
+    "paths":{
+      "/sap.s4.beh.materialdocument.v1.MaterialDocument.Created.v1":{
+        "post":{
+          "tags":["Created"],
+          "x-payload":"",
+          "description":"This event is raised when a material document is created.",
+          "summary":"Material Document Created",
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "allOf":[
+                    {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                    {"type":"object","properties":{
+                      "data":{
+                        "description":"Data Fields",
+                        "$ref":"#/components/schemas/sap.s4.beh.materialdocument.v1.MaterialDocument.Created.v1"}
+                        }
+                    }
+                          ]
+                          }
+                                 }
+                      }
+                         },
+            "responses":{
+              "default":{
+                "description":"Successful"}
+                        }
+            }
+          }
+  }
+}
